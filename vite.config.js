@@ -1,0 +1,98 @@
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import autoprefixer from 'autoprefixer';
+import path from 'path';
+import fs from 'fs';
+import { parseEnv } from 'node:util';
+import handlebars from 'handlebars';
+
+const pages = {"9449b5f7-dc16-4afd-967c-495d403d679d-en":{"outputDir":"./process","lang":"en","title":"Maggie Dukek | Websites, Apps & Custom Systems","cacheVersion":46,"meta":[{"name":"title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"keywords","content":"websites, custom apps, dashboards, digital systems, small business websites, app builds, full stack build, workflow systems, Maggie Dukek"},{"name":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"itemprop":"name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"itemprop":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"itemprop":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"name":"twitter:card","content":"summary"},{"name":"twitter:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"twitter:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"twitter:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"property":"og:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:site_name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:type","content":"website"},{"name":"robots","content":"index, follow"}],"scripts":{"head":"<!-- Google tag (gtag.js) -->\r\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-JTH7YYGDS6\"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-JTH7YYGDS6');\r\n</script>\n","body":"\n"},"baseTag":{"href":"/","target":"_self"},"alternateLinks":[{"rel":"alternate","hreflang":"x-default","href":"https://www.maggiedukek.com/process/"},{"rel":"alternate","hreflang":"en","href":"https://www.maggiedukek.com/process/"}]},"4b571c88-caf0-46d6-aba8-a430a4020f9e-en":{"outputDir":"./start-a-project","lang":"en","title":"Maggie Dukek | Websites, Apps & Custom Systems","cacheVersion":46,"meta":[{"name":"title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"keywords","content":"websites, custom apps, dashboards, digital systems, small business websites, app builds, full stack build, workflow systems, Maggie Dukek"},{"name":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"itemprop":"name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"itemprop":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"itemprop":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"name":"twitter:card","content":"summary"},{"name":"twitter:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"twitter:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"twitter:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"property":"og:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:site_name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:type","content":"website"},{"name":"robots","content":"index, follow"}],"scripts":{"head":"<!-- Google tag (gtag.js) -->\r\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-JTH7YYGDS6\"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-JTH7YYGDS6');\r\n</script>\n","body":"\n"},"baseTag":{"href":"/","target":"_self"},"alternateLinks":[{"rel":"alternate","hreflang":"x-default","href":"https://www.maggiedukek.com/start-a-project/"},{"rel":"alternate","hreflang":"en","href":"https://www.maggiedukek.com/start-a-project/"}]},"18a54226-1d91-4292-8412-4187561047ec-en":{"outputDir":"./what-i-build","lang":"en","title":"Maggie Dukek | Websites, Apps & Custom Systems","cacheVersion":46,"meta":[{"name":"title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"keywords","content":"websites, custom apps, dashboards, digital systems, small business websites, app builds, full stack build, workflow systems, Maggie Dukek"},{"name":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"itemprop":"name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"itemprop":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"itemprop":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"name":"twitter:card","content":"summary"},{"name":"twitter:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"twitter:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"twitter:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"property":"og:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:site_name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:type","content":"website"},{"name":"robots","content":"index, follow"}],"scripts":{"head":"<!-- Google tag (gtag.js) -->\r\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-JTH7YYGDS6\"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-JTH7YYGDS6');\r\n</script>\n","body":"\n"},"baseTag":{"href":"/","target":"_self"},"alternateLinks":[{"rel":"alternate","hreflang":"x-default","href":"https://www.maggiedukek.com/what-i-build/"},{"rel":"alternate","hreflang":"en","href":"https://www.maggiedukek.com/what-i-build/"}]},"343ac7d4-1de1-4781-a7d2-81a85639393f-en":{"outputDir":"./work","lang":"en","title":"Maggie Dukek | Websites, Apps & Custom Systems","cacheVersion":46,"meta":[{"name":"title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"keywords","content":"websites, custom apps, dashboards, digital systems, small business websites, app builds, full stack build, workflow systems, Maggie Dukek"},{"name":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"itemprop":"name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"itemprop":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"itemprop":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"name":"twitter:card","content":"summary"},{"name":"twitter:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"twitter:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"twitter:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"property":"og:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:site_name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:type","content":"website"},{"name":"robots","content":"index, follow"}],"scripts":{"head":"<!-- Google tag (gtag.js) -->\r\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-JTH7YYGDS6\"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-JTH7YYGDS6');\r\n</script>\n","body":"\n"},"baseTag":{"href":"/","target":"_self"},"alternateLinks":[{"rel":"alternate","hreflang":"x-default","href":"https://www.maggiedukek.com/work/"},{"rel":"alternate","hreflang":"en","href":"https://www.maggiedukek.com/work/"}]},"6d982940-863b-4b07-b6eb-21a49cade803-en":{"outputDir":"./","lang":"en","title":"Maggie Dukek | Websites, Apps & Custom Systems","cacheVersion":46,"meta":[{"name":"title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"keywords","content":"websites, custom apps, dashboards, digital systems, small business websites, app builds, full stack build, workflow systems, Maggie Dukek"},{"name":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"itemprop":"name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"itemprop":"description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"itemprop":"image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"name":"twitter:card","content":"summary"},{"name":"twitter:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"name":"twitter:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"name":"twitter:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:title","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:description","content":"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works."},{"property":"og:image","content":"/images/Untitled__1400_x_250_px___Logo_.png?_wwcv=46"},{"property":"og:site_name","content":"Maggie Dukek | Websites, Apps & Custom Systems"},{"property":"og:type","content":"website"},{"name":"robots","content":"index, follow"}],"scripts":{"head":"<!-- Google tag (gtag.js) -->\r\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-JTH7YYGDS6\"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-JTH7YYGDS6');\r\n</script>\n","body":"\n"},"baseTag":{"href":"/","target":"_self"},"structuredData":"{\r\n  \"@context\": \"https://schema.org\",\r\n  \"@type\": \"Person\",\r\n  \"name\": \"Maggie Dukek\",\r\n  \"url\": \"https://www.maggiedukek.com\",\r\n  \"jobTitle\": \"Website, App, and Custom Systems Builder\",\r\n  \"description\": \"Maggie Dukek builds custom websites, apps, dashboards, and digital systems for small businesses, programs, and people who need their ideas organized into something that actually works.\",\r\n  \"sameAs\": [\r\n    \"https://www.maggiedukek.com\"\r\n  ],\r\n  \"knowsAbout\": [\r\n    \"Custom websites\",\r\n    \"Custom apps\",\r\n    \"Dashboards\",\r\n    \"Digital systems\",\r\n    \"Workflow systems\",\r\n    \"Full-stack builds\",\r\n    \"Small business websites\"\r\n  ]\r\n}","alternateLinks":[{"rel":"alternate","hreflang":"x-default","href":"https://www.maggiedukek.com/"},{"rel":"alternate","hreflang":"en","href":"https://www.maggiedukek.com/"}]}};
+
+// Read the main HTML template
+const template = fs.readFileSync(path.resolve(__dirname, 'template.html'), 'utf-8');
+const compiledTemplate = handlebars.compile(template);
+
+// Generate an HTML file for each page with its metadata
+Object.values(pages).forEach(pageConfig => {
+    // Compile the template with page metadata
+    const html = compiledTemplate({
+        title: pageConfig.title,
+        lang: pageConfig.lang,
+        meta: pageConfig.meta,
+        structuredData: pageConfig.structuredData || null,
+        scripts: {
+            head: pageConfig.scripts.head,
+            body: pageConfig.scripts.body,
+        },
+        alternateLinks: pageConfig.alternateLinks,
+        cacheVersion: pageConfig.cacheVersion,
+        baseTag: pageConfig.baseTag,
+    });
+
+    // Save output html for each page
+    if (!fs.existsSync(pageConfig.outputDir)) {
+        fs.mkdirSync(pageConfig.outputDir, { recursive: true });
+    }
+    fs.writeFileSync(`${pageConfig.outputDir}/index.html`, html);
+});
+
+const rolldownOptionsInput = {};
+for (const pageName in pages) {
+    rolldownOptionsInput[pageName] = path.resolve(__dirname, pages[pageName].outputDir, 'index.html');
+}
+
+function getFrontEnvironmentValues(root, mode) {
+    const filePath = path.resolve(root, `.env.${mode}`);
+    if (!fs.existsSync(filePath)) {
+        return {};
+    }
+
+    return Object.fromEntries(
+        Object.entries(parseEnv(fs.readFileSync(filePath, 'utf8'))).filter(([key]) => !key.startsWith('VITE_'))
+    );
+}
+
+export default defineConfig(({ mode }) => {
+    return {
+        plugins: [vue()],
+        base: "/",
+        define: {
+            global: 'globalThis',
+            __VUE_PROD_DEVTOOLS__: mode === 'development',
+            __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: mode === 'development',
+            __WW_FRONT_ENV_VARIABLES__: JSON.stringify({
+                staging: getFrontEnvironmentValues(__dirname, 'staging'),
+                production: getFrontEnvironmentValues(__dirname, 'production'),
+            }),
+        },
+        resolve: {
+            alias: {
+                '@': path.resolve(__dirname, './src'),
+            },
+        },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: 'modern-compiler',
+                },
+            },
+            postcss: {
+                plugins: [autoprefixer],
+            },
+        },
+        server: {
+            port: 8080,
+        },
+        build: {
+            chunkSizeWarningLimit: 10000,
+            rolldownOptions: {
+                input: rolldownOptionsInput,
+                onwarn: (entry, next) => {
+                    if (entry.loc?.file && /js$/.test(entry.loc.file) && /Use of eval in/.test(entry.message)) return;
+                    if (/Use of direct `eval`/.test(entry.message)) return;
+                    return next(entry);
+                },
+            },
+        },
+    };
+});
