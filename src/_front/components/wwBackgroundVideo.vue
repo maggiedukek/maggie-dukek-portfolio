@@ -28,7 +28,9 @@ export default {
             };
 
             if (this.video.loop) attributes.loop = true;
-            if (this.video.preload) attributes.preload = true;
+            // Background video is purely decorative and can be large, so never block initial
+            // load by preloading it. preload="none" lets autoplay fetch it lazily instead.
+            attributes.preload = 'none';
 
             if (this.video.size === 'contain') {
                 attributes.style = {

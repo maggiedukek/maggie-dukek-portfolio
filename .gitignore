@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# per-page HTML generated into the repo root by vite.config.js at build time
+/index.html
+/admin/
+/process/
+/start-a-project/
+/what-i-build/
+/work/

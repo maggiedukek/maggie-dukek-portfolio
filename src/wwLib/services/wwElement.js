@@ -350,8 +350,9 @@ export default {
                         //TO
                         properties.to = properties.href;
                         if (properties.href?.startsWith('/')) {
-                            //Remove starting slash for href only
-                            properties.href = properties.href.slice(1);
+                            //Remove starting slash for href only (keep a real target for the
+                            //home link, whose path would otherwise collapse to an empty href)
+                            properties.href = properties.href.slice(1) || './';
                         }
 
                         //TARGET

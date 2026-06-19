@@ -27,6 +27,9 @@
 </style>
         
 
+        {{#if canonical}}
+        <link rel="canonical" href="{{canonical}}" />
+        {{/if}}
         {{#alternateLinks}}
         <link rel="{{rel}}" hreflang="{{hreflang}}" href="{{href}}" />
         {{/alternateLinks}} {{#if structuredData}}
