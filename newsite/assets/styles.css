@@ -280,3 +280,15 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 @media(max-width:600px){.svc-row{flex-direction:column;align-items:flex-start;gap:10px}}
 
 .foot-social a svg{width:18px;height:18px;display:block}
+
+/* case study pages */
+.cs-back{font-size:14px;font-weight:600;color:var(--accent-deep)}
+.cs-back:hover{color:var(--accent)}
+.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:6px}
+.cs-block .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;display:inline-block;margin-bottom:10px}
+.cs-block .lab.p{color:var(--ink-dim)}
+.cs-block .lab.f{color:var(--accent)}
+.cs-block p{color:var(--ink-soft);font-size:16.5px;line-height:1.7}
+.cs-shot{margin-top:48px;aspect-ratio:16/9;border-radius:18px;border:1px solid var(--line-soft);background:linear-gradient(135deg,rgba(74,159,176,.12),rgba(41,63,82,.06));display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.cs-meta{display:flex;flex-wrap:wrap;gap:44px;margin-top:42px;padding-top:30px;border-top:1px solid var(--line)}
+@media(max-width:760px){.cs-grid{grid-template-columns:1fr;gap:26px}}
