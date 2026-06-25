@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Maggie Dukek</title>
+<meta name="description" content="Start a project with Maggie Dukek — custom websites, booking systems, and dashboards for service businesses.">
+<link rel="stylesheet" href="assets/styles.css?v=form1">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="assets/logo-wide-white.png?v=mix" alt="Maggie Dukek — Websites · Apps · Systems"></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">What I Make</a>
+      <a href="work.html">Work</a>
+      <a href="contact.html" class="nav-cta active">Let's talk</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div class="wrap contact-wrap">
+    <span class="eyebrow" style="justify-content:center">Let's make something</span>
+    <h1 class="display">Worth showing off.</h1>
+    <p class="sub">Tell me what your business needs to do — not just how it should look — and I'll design and build the thing that does it.</p>
+    <div class="actions">
+      <a href="mailto:studio@maggiedukek.com" class="btn btn-primary">studio@maggiedukek.com</a>
+      <a href="https://maggiedukek.com" class="btn btn-ghost">maggiedukek.com</a>
+    </div>
+
+    <form id="inquiryForm" class="contact-form">
+      <div class="row2">
+        <div><label>Name</label><input type="text" name="name" required></div>
+        <div><label>Email</label><input type="email" name="email" required></div>
+      </div>
+      <div class="row2">
+        <div><label>Phone (optional)</label><input type="tel" name="phone"></div>
+        <div><label>What do you need?</label>
+          <select name="project_type">
+            <option value="">Choose one…</option>
+            <option>Website</option><option>App Build</option><option>Dashboard / Portal</option>
+            <option>Workflow / System</option><option>Updates / Fixes</option><option>Not Sure Yet</option>
+          </select></div>
+      </div>
+      <div class="row2">
+        <div><label>How you'd like to work</label>
+          <select name="budget_setup">
+            <option value="">Choose one…</option>
+            <option>Hourly updates</option><option>Milestone project</option><option>Not sure yet</option>
+          </select></div>
+        <div><label>Timeline (optional)</label><input type="text" name="timeline" placeholder="e.g. ASAP, next month"></div>
+      </div>
+      <div><label>Links (optional)</label><input type="text" name="links" placeholder="Current site, examples you like…"></div>
+      <div><label>Tell me about it</label><textarea name="message" required placeholder="What does your business need to do — not just how it should look?"></textarea></div>
+      <button type="submit" class="submit">Send it over</button>
+      <p id="formMsg" class="form-msg"></p>
+    </form>
+
+    <div class="contact-detail">
+      <div class="item"><div class="l">Email</div><div class="d">studio@maggiedukek.com</div></div>
+      <div class="item"><div class="l">Based in</div><div class="d">Motley, MN · Remote</div></div>
+      <div class="item"><div class="l">GitHub</div><div class="d">github.com/maggiedukek</div></div>
+    </div>
+    <div class="brandmark" style="margin-top:56px"><img src="assets/logo-wide-2tone.png?v=2t" alt="Maggie Dukek — Websites · Apps · Systems"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <a href="index.html" class="brand"><img src="assets/logo-wide-white.png?v=mix" alt="Maggie Dukek — Websites · Apps · Systems"></a>
+    <div class="foot-social">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="work.html">Work</a>
+      <a href="https://github.com/maggiedukek" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js?v=mix"></script>
+<script>
+(function(){
+  var SB_URL='https://dzjhpxkjqngqdgoefnih.supabase.co/rest/v1/inquiries';
+  var SB_KEY='sb_publishable_NIAo2qXxCsqv0eNh9u6TJg_hkSDnZTf';
+  var f=document.getElementById('inquiryForm'), msg=document.getElementById('formMsg');
+  if(!f) return;
+  f.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var btn=f.querySelector('button.submit');
+    btn.disabled=true; btn.textContent='Sending…'; msg.textContent=''; msg.className='form-msg';
+    var data=Object.fromEntries(new FormData(f).entries());
+    Object.keys(data).forEach(function(k){ if(data[k]==='') delete data[k]; });
+    try{
+      var r=await fetch(SB_URL,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(data)});
+      if(r.ok){ f.reset(); msg.className='form-msg ok'; msg.textContent="Got it — thank you! I'll be in touch soon."; }
+      else { msg.className='form-msg err'; msg.textContent='Something went wrong — email me at studio@maggiedukek.com.'; }
+    }catch(err){ msg.className='form-msg err'; msg.textContent='Something went wrong — email me at studio@maggiedukek.com.'; }
+    btn.disabled=false; btn.textContent='Send it over';
+  });
+})();
+</script>
+</body>
+</html>

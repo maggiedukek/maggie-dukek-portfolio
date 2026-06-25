@@ -1,0 +1,4 @@
+# maggiedukek.com — publish the hand-coded site in /newsite (no build step).
+[build]
+  command = "echo 'Static site — nothing to build.'"
+  publish = "newsite"
