@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     resize();
     window.addEventListener('resize', resize);
+    window.addEventListener('load', resize);
+    requestAnimationFrame(resize);
     function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
     var last = 0;
     function draw(t) {
