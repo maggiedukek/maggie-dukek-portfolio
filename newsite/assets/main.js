@@ -14,4 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     io.observe(el);
   });
 
-  /
+  // Rotating hero word
+  const rot = document.getElementById('rotator');
+  if (rot && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const words = rot.querySelectorAll('span');
+    let i = 0;
+    setInterval(() => {
+      words[i].classList.remove('on');
+      i = (i + 1) % words.length;
+      words[i].classList.add('on');
+    }, 2400);
+  }
+});
