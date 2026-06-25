@@ -174,7 +174,7 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 @media(max-width:760px){.foot-inner{justify-content:center;text-align:center}.foot-tagline{flex-basis:100%;order:-1;margin-bottom:4px}.foot-copy{text-align:center}}
 
 /* ===== CTA BAND ===== */
-.cta-band{background:var(--surface);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);text-align:center}
+.cta-band{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.82)),url('bg-accent.jpg') center/cover no-repeat;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);text-align:center}
 .cta-band .section-title{max-width:760px;margin:0 auto}
 .cta-band p{max-width:640px;margin:20px auto 0;color:var(--ink-soft);font-size:17px}
 .cta-band .actions{justify-content:center;margin-top:34px}
