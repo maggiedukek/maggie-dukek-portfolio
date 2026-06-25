@@ -81,7 +81,7 @@ section{padding:80px 0;position:relative}
 .orb.b{bottom:-26%;left:-12%;width:38vw;height:38vw;background:radial-gradient(circle,rgba(74,159,176,.06),transparent 62%)}
 
 /* HOME hero */
-.home-hero{display:block;padding:96px 0 64px}
+.home-hero{display:block;padding:62px 0 48px}
 .home-hero .inner{position:relative;z-index:2;max-width:920px;margin:0 auto 0 clamp(22px,6vw,150px);padding:0 24px 0 0}
 .home-hero .display{margin-top:20px}
 .home-hero .accent{color:var(--accent)}
