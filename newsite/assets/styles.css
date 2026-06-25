@@ -107,11 +107,11 @@ section{padding:80px 0;position:relative}
 .rotator>span{grid-area:1/1;color:var(--accent);opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
 .rotator>span.on{opacity:1;transform:none}
 /* marquee */
-.marquee{overflow:hidden;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--surface);padding:20px 0;white-space:nowrap}
-.marquee .track{display:inline-flex;align-items:center;gap:36px;animation:marquee 26s linear infinite;will-change:transform}
+.marquee{overflow:hidden;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg);padding:30px 0;white-space:nowrap;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.marquee .track{display:inline-flex;align-items:center;gap:50px;animation:marquee 40s linear infinite;will-change:transform}
 .marquee:hover .track{animation-play-state:paused}
-.marquee span{font-family:var(--font-display);font-size:clamp(18px,2.4vw,26px);font-weight:500;color:var(--ink);letter-spacing:.02em}
-.marquee .dot{color:var(--accent)}
+.marquee span{font-family:var(--font-display);font-size:clamp(21px,2.5vw,30px);font-weight:400;color:var(--ink);letter-spacing:.01em}
+.marquee .dot{color:var(--accent);font-size:.5em;opacity:.85;transform:translateY(-3px)}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* scroll cue */
 .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-dim);font-size:11px;letter-spacing:.2em;text-transform:uppercase;z-index:2}
