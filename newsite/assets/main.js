@@ -69,4 +69,5 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   rain(document.querySelector('.hero-rain'), 15, 60);
   rain(document.querySelector('.marquee-rain'), 12, 95);
+  rain(document.querySelector('.connect-rain'), 14, 230);
 });
