@@ -368,3 +368,8 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 .make-dark .svc::after{background:linear-gradient(90deg,#6fc0cf,rgba(111,192,207,0))}
 .make-dark .btn-ghost{color:#cfe6ea;border-bottom-color:rgba(207,230,234,.4)}
 .make-dark .btn-ghost:hover{color:#ffffff;border-bottom-color:#6fc0cf;text-shadow:0 0 16px rgba(111,192,207,.5)}
+
+/* make-dark: preview + soon badge */
+.make-dark .svc-preview{border-color:rgba(111,192,207,.4);background:rgba(111,192,207,.07)}
+.make-dark .svc-preview span{color:#9fb3c0}
+.make-dark .svc-soon{color:#cfe6ea;background:rgba(111,192,207,.16);border-color:rgba(111,192,207,.32)}
