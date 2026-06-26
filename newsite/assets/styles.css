@@ -502,3 +502,9 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 #work-preview .work-sub{font-size:16.5px;line-height:1.6;color:var(--ink-soft);max-width:600px;margin:12px auto 0}
 #work-preview .showcase{margin:32px auto 0}
 .work-foot{justify-content:center;margin-top:30px}
+
+/* showcase: out of the box, whole video, premium */
+.showcase{max-width:960px;border:0;background:#eef2f4;box-shadow:0 46px 110px -48px rgba(28,42,46,.5);border-radius:16px}
+#work-preview .showcase{margin:30px auto 0}
+.showcase-stage{aspect-ratio:4/3}
+.show-item{object-fit:contain}
