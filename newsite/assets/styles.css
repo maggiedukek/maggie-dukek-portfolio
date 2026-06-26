@@ -381,3 +381,21 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 .make-flow .actions{justify-content:flex-end}
 @media(max-width:980px){.make-flow .svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.make-flow .svc-grid{grid-template-columns:1fr}.make-flow .actions{justify-content:flex-start}}
+
+/* make-flow: tighter height */
+.make-flow{padding:54px 0}
+.make-flow .svc{padding:28px 30px 30px}
+.make-flow .sec-head{margin-bottom:6px}
+@media(max-width:680px){.make-flow{padding:44px 0}}
+
+/* make-flow: lined alignment, no cards, no hover */
+.make-flow{padding:38px 0}
+.make-flow .sec-head{margin-bottom:22px}
+.make-flow .svc-grid{gap:0}
+.make-flow .svc{background:none!important;border:0!important;border-radius:0;box-shadow:none!important;transform:none!important;padding:2px 34px}
+.make-flow .svc:first-child{padding-left:0}
+.make-flow .svc+.svc{box-shadow:inset 1px 0 0 0 rgba(255,255,255,.22)!important}
+.make-flow .svc::after{display:none!important}
+.make-flow .svc h3{font-size:19px}
+.make-flow .svc p{margin-top:10px;font-size:14.5px}
+@media(max-width:560px){.make-flow .svc{padding:14px 0!important}.make-flow .svc+.svc{box-shadow:inset 0 1px 0 0 rgba(255,255,255,.18)!important}.make-flow .svc:first-child{padding-top:0!important}}
