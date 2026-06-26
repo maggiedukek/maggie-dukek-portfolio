@@ -433,3 +433,8 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 .duo .dl-thumb{aspect-ratio:auto;height:150px}
 .duo-actions{justify-content:center;margin-top:26px}
 @media(max-width:860px){.duo{grid-template-columns:1fr;gap:40px}}
+
+/* duo single-card slideshow */
+.duo-cards.is-slideshow{position:relative}
+.duo-cards.is-slideshow .dl-card{position:absolute;top:0;left:0;width:100%;opacity:0;visibility:hidden;transition:opacity .7s ease}
+.duo-cards.is-slideshow .dl-card.is-active{opacity:1;visibility:visible}

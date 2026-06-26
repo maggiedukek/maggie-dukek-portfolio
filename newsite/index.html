@@ -228,5 +228,20 @@
   });
 })();
 </script>
+<script>
+(function(){
+  document.querySelectorAll('.duo-cards').forEach(function(col){
+    var cards=[].slice.call(col.querySelectorAll('.dl-card'));
+    if(cards.length<2) return;
+    col.classList.add('is-slideshow');
+    function sizeIt(){var h=0;cards.forEach(function(c){if(c.offsetHeight>h)h=c.offsetHeight;});col.style.minHeight=h+'px';}
+    var i=0;
+    function show(n){cards.forEach(function(c,k){c.classList.toggle('is-active',k===n);});}
+    show(0);sizeIt();setTimeout(sizeIt,600);window.addEventListener('load',sizeIt);
+    setInterval(function(){i=(i+1)%cards.length;show(i);},10000);
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(sizeIt,150);});
+  });
+})();
+</script>
 </body>
 </html>
