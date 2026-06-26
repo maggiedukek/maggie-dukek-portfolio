@@ -468,3 +468,29 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 .shop-head .eyebrow{font-size:13px}
 .shop-head .section-title{font-size:clamp(32px,4vw,48px)}
 .shop-sub{font-size:17.5px;max-width:620px}
+
+/* duo arrows + work showcase */
+.duo-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 20px -12px rgba(28,42,46,.5);transition:color .2s,border-color .2s}
+.duo-nav:hover{color:var(--accent);border-color:var(--accent)}
+.duo-prev{left:-8px}
+.duo-next{right:-8px}
+.showcase{position:relative;margin:46px auto 0;max-width:900px;border-radius:18px;overflow:hidden;border:1px solid var(--line-soft);box-shadow:0 24px 60px -34px rgba(28,42,46,.55);background:#0d141b}
+.showcase-stage{position:relative;aspect-ratio:16/10}
+.show-item{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;visibility:hidden;transition:opacity .6s ease}
+.show-item.is-active{opacity:1;visibility:visible}
+.show-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:#1b2530;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.show-nav:hover{background:#fff}
+.show-prev{left:14px}
+.show-next{right:14px}
+.show-dots{position:absolute;left:0;right:0;bottom:14px;display:flex;gap:8px;justify-content:center;z-index:3}
+.show-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:background .2s}
+.show-dot.active{background:#fff;transform:scale(1.25)}
+@media(max-width:600px){.duo-prev{left:0}.duo-next{right:0}}
+
+/* hero portrait cutout in front of the code */
+.home-hero .hero-photo{position:absolute;right:clamp(-10px,3vw,70px);bottom:0;height:min(88%,580px);width:auto;max-width:48%;object-fit:contain;object-position:bottom right;z-index:1;pointer-events:none}
+@media(max-width:900px){.home-hero .hero-photo{display:none}}
+
+/* hero photo: fade bottom + hide on mobile */
+.home-hero .hero-photo{-webkit-mask-image:linear-gradient(to bottom,#000 66%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(to bottom,#000 66%,rgba(0,0,0,0) 100%)}
+@media(max-width:900px){.home-hero .hero-photo{display:none!important}}

@@ -44,6 +44,7 @@
   <div class="orb a"></div>
   <div class="orb b"></div>
   <canvas class="hero-rain" aria-hidden="true"></canvas>
+  <img class="hero-photo" src="assets/hero-maggie.webp?v=2" alt="Maggie Dukek" aria-hidden="true">
   <div class="wrap inner">
     <span class="eyebrow">Web Designer &amp; Developer</span>
     <h1 class="display">
@@ -148,6 +149,23 @@
       </div>
 
     </div>
+
+    <div class="showcase" aria-label="Recent work">
+      <div class="showcase-stage">
+        <video class="show-item" data-type="video" src="assets/case-ac-hair-co.mp4" muted playsinline preload="metadata"></video>
+        <video class="show-item" data-type="video" src="assets/case-always-forever-beauty.mp4" muted playsinline preload="metadata"></video>
+        <video class="show-item" data-type="video" src="assets/case-anchored-in-him-images.mp4" muted playsinline preload="metadata"></video>
+        <video class="show-item" data-type="video" src="assets/case-bright-eyed-deals.mp4" muted playsinline preload="metadata"></video>
+        <img class="show-item" data-type="photo" src="assets/case-ac-hair-co.jpg" alt="AC Hair Co website" loading="lazy">
+        <img class="show-item" data-type="photo" src="assets/case-always-forever-beauty.jpg" alt="Always and Forever Beauty website" loading="lazy">
+        <img class="show-item" data-type="photo" src="assets/case-anchored-in-him-images.jpg" alt="Anchored in Him Images website" loading="lazy">
+        <img class="show-item" data-type="photo" src="assets/case-bright-eyed-deals.jpg" alt="Bright Eyed Deals website" loading="lazy">
+      </div>
+      <button class="show-nav show-prev" type="button" aria-label="Previous">&lsaquo;</button>
+      <button class="show-nav show-next" type="button" aria-label="Next">&rsaquo;</button>
+      <div class="show-dots"></div>
+    </div>
+
   </div>
 </section>
 
@@ -233,17 +251,53 @@
 </script>
 <script>
 (function(){
-  document.querySelectorAll('.duo-cards').forEach(function(col){
+  var cols=[].slice.call(document.querySelectorAll('.duo-cards'));
+  var states=cols.map(function(col){
     var cards=[].slice.call(col.querySelectorAll('.dl-card'));
-    if(cards.length<2) return;
     col.classList.add('is-slideshow');
-    function sizeIt(){var h=0;cards.forEach(function(c){if(c.offsetHeight>h)h=c.offsetHeight;});col.style.minHeight=h+'px';}
-    var i=0;
-    function show(n){cards.forEach(function(c,k){c.classList.toggle('is-active',k===n);});}
-    show(0);sizeIt();setTimeout(sizeIt,600);window.addEventListener('load',sizeIt);
-    setInterval(function(){i=(i+1)%cards.length;show(i);},10000);
-    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(sizeIt,150);});
+    var st={col:col,cards:cards,i:0,timer:null};
+    function show(n){st.i=(n+cards.length)%cards.length;cards.forEach(function(c,k){c.classList.toggle('is-active',k===st.i);});}
+    function stop(){if(st.timer){clearInterval(st.timer);st.timer=null;}}
+    function start(){stop();if(cards.length>1)st.timer=setInterval(function(){show(st.i+1);},10000);}
+    st.show=show;st.start=start;st.stop=stop;
+    if(cards.length>1){
+      var p=document.createElement('button');p.type='button';p.className='duo-nav duo-prev';p.setAttribute('aria-label','Previous');p.innerHTML='&lsaquo;';
+      var n=document.createElement('button');n.type='button';n.className='duo-nav duo-next';n.setAttribute('aria-label','Next');n.innerHTML='&rsaquo;';
+      p.addEventListener('click',function(){show(st.i-1);start();});
+      n.addEventListener('click',function(){show(st.i+1);start();});
+      col.appendChild(p);col.appendChild(n);
+      col.addEventListener('mouseenter',stop);col.addEventListener('mouseleave',start);
+    }
+    show(0);
+    return st;
   });
+  function sizeAll(){var m=0;states.forEach(function(st){st.cards.forEach(function(c){if(c.offsetHeight>m)m=c.offsetHeight;});});states.forEach(function(st){st.col.style.minHeight=m+'px';});}
+  sizeAll();setTimeout(sizeAll,600);window.addEventListener('load',sizeAll);
+  var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(sizeAll,150);});
+  states.forEach(function(st){st.start();});
+
+  var stage=document.querySelector('.showcase-stage');
+  if(stage){
+    var items=[].slice.call(stage.querySelectorAll('.show-item'));
+    var sc=document.querySelector('.showcase');
+    var dots=sc?sc.querySelector('.show-dots'):null;
+    var ci=0,ct=null;
+    function cclear(){if(ct){clearTimeout(ct);ct=null;}}
+    function cshow(k){
+      cclear();ci=(k+items.length)%items.length;
+      items.forEach(function(it,j){var on=j===ci;it.classList.toggle('is-active',on);if(it.tagName==='VIDEO'){if(on){try{it.currentTime=0;it.play();}catch(e){}}else{it.pause();}}});
+      if(dots){[].slice.call(dots.children).forEach(function(d,j){d.classList.toggle('active',j===ci);});}
+      if(items[ci].tagName!=='VIDEO'){ct=setTimeout(function(){cshow(ci+1);},7000);}
+    }
+    items.forEach(function(it,k){
+      if(it.tagName==='VIDEO'){it.addEventListener('ended',function(){if(it.classList.contains('is-active'))cshow(ci+1);});}
+      if(dots){var d=document.createElement('button');d.type='button';d.className='show-dot';d.setAttribute('aria-label','Item '+(k+1));d.addEventListener('click',function(){cshow(k);});dots.appendChild(d);}
+    });
+    var cp=sc&&sc.querySelector('.show-prev'),cn=sc&&sc.querySelector('.show-next');
+    if(cp)cp.addEventListener('click',function(){cshow(ci-1);});
+    if(cn)cn.addEventListener('click',function(){cshow(ci+1);});
+    if(items.length)cshow(0);
+  }
 })();
 </script>
 </body>
