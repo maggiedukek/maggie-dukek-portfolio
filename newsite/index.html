@@ -103,7 +103,7 @@
       <h2 class="section-title">Grab a digital download</h2>
       <p class="lead" style="font-size:18px;margin-top:14px">AI image prompt packs and ready-to-launch Shopify themes to give your brand a polished, cohesive look — instant downloads, yours to keep.</p>
     </div>
-    <div class="dl-grid dl-grid-5">
+    <div class="dl-carousel" data-autoplay><button class="dl-nav dl-prev" type="button" aria-label="Previous products">&lsaquo;</button><div class="dl-viewport"><div class="dl-track">
       <a class="dl-card" href="https://contra.com/products/2GaaDkKj-glow-50-ai-image-prompts-for-beauty-and-wellness-brands" target="_blank" rel="noopener">
         <div class="dl-thumb"><video src="assets/glow-walkthrough.mp4" autoplay muted loop playsinline aria-hidden="true"></video></div>
         <div class="dl-body"><span class="dl-tag">Beauty &amp; Wellness</span><h3>50 AI Image Prompts</h3><p>50 AI image prompts to create scroll-stopping visuals for beauty &amp; wellness brands.</p><span class="dl-price">$36</span></div>
@@ -124,8 +124,8 @@
         <div class="dl-thumb dl-thumb-5"><img src="assets/momentum-theme.avif" alt="Momentum Shopify theme preview" loading="lazy"></div>
         <div class="dl-body"><span class="dl-tag">Shopify Theme</span><h3>Momentum — Fitness Theme</h3><p>A conversion-focused Shopify theme for fitness &amp; coaching brands — deep charcoal with energetic green accents.</p><span class="dl-price">$79</span></div>
       </a>
-    </div>
-    <div class="actions" style="margin-top:38px"><a href="https://contra.com/maggie_dukek_892ir4v7" class="btn btn-ghost" target="_blank" rel="noopener">View all on Contra</a></div>
+    </div></div><button class="dl-nav dl-next" type="button" aria-label="Next products">&rsaquo;</button><div class="dl-dots"></div></div>
+    <div class="actions" style="margin-top:32px"><a href="services.html" class="btn btn-ghost">See all services &rarr;</a><a href="https://contra.com/maggie_dukek_892ir4v7" class="btn btn-ghost" target="_blank" rel="noopener">View all on Contra</a></div>
   </div>
 </section>
 
@@ -170,5 +170,44 @@
 </footer>
 
 <script src="assets/main.js?v=c2"></script>
+<script>
+(function(){
+  document.querySelectorAll('.dl-carousel').forEach(function(car){
+    var track=car.querySelector('.dl-track');
+    var cards=[].slice.call(track.children);
+    var dotsWrap=car.querySelector('.dl-dots');
+    var idx=0, timer=null;
+    function visible(){var w=window.innerWidth;return w<=560?1:(w<=820?2:3);}
+    function maxIdx(){return Math.max(0,cards.length-visible());}
+    function go(){
+      if(idx>maxIdx())idx=maxIdx();
+      if(idx<0)idx=0;
+      track.style.transform='translateX('+(-cards[idx].offsetLeft)+'px)';
+      if(dotsWrap){
+        dotsWrap.innerHTML='';
+        for(var i=0;i<=maxIdx();i++){
+          var d=document.createElement('button');
+          d.type='button';d.className='dl-dot'+(i===idx?' active':'');
+          d.setAttribute('aria-label','Go to set '+(i+1));
+          (function(k){d.addEventListener('click',function(){idx=k;go();restart();});})(i);
+          dotsWrap.appendChild(d);
+        }
+      }
+    }
+    function next(){idx=idx>=maxIdx()?0:idx+1;go();}
+    function prev(){idx=idx<=0?maxIdx():idx-1;go();}
+    function start(){if(car.hasAttribute('data-autoplay')&&maxIdx()>0)timer=setInterval(next,4500);}
+    function stop(){if(timer){clearInterval(timer);timer=null;}}
+    function restart(){stop();start();}
+    var nb=car.querySelector('.dl-next'),pb=car.querySelector('.dl-prev');
+    if(nb)nb.addEventListener('click',function(){next();restart();});
+    if(pb)pb.addEventListener('click',function(){prev();restart();});
+    car.addEventListener('mouseenter',stop);
+    car.addEventListener('mouseleave',start);
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(go,150);});
+    go();start();
+  });
+})();
+</script>
 </body>
 </html>
