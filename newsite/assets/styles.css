@@ -459,3 +459,6 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 .shop-head{text-align:center;margin:0 auto 36px;max-width:720px}
 .shop-head .section-title{font-size:clamp(28px,3.4vw,42px)}
 .shop-sub{font-size:16.5px}
+
+/* clip decorative overflow (no horizontal scroll) */
+.home-hero{overflow:hidden}
