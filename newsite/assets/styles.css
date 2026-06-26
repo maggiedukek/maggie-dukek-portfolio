@@ -494,3 +494,11 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 /* hero photo: fade bottom + hide on mobile */
 .home-hero .hero-photo{-webkit-mask-image:linear-gradient(to bottom,#000 66%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(to bottom,#000 66%,rgba(0,0,0,0) 100%)}
 @media(max-width:900px){.home-hero .hero-photo{display:none!important}}
+
+/* work-preview section */
+#work-preview .work-head{text-align:center;max-width:680px;margin:0 auto}
+#work-preview .work-head .eyebrow{justify-content:center}
+#work-preview .work-head .section-title{font-size:clamp(26px,3vw,38px);margin-top:10px}
+#work-preview .work-sub{font-size:16.5px;line-height:1.6;color:var(--ink-soft);max-width:600px;margin:12px auto 0}
+#work-preview .showcase{margin:32px auto 0}
+.work-foot{justify-content:center;margin-top:30px}
