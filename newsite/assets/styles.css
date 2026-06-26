@@ -462,3 +462,9 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 
 /* clip decorative overflow (no horizontal scroll) */
 .home-hero{overflow:hidden}
+
+/* shop header: a bit bigger (v2) */
+.shop-head{max-width:760px}
+.shop-head .eyebrow{font-size:13px}
+.shop-head .section-title{font-size:clamp(32px,4vw,48px)}
+.shop-sub{font-size:17.5px;max-width:620px}
