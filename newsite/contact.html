@@ -23,6 +23,7 @@
 <meta name="twitter:description" content="Start a project with Maggie Dukek — custom websites, booking systems, and dashboards for service businesses.">
 <meta name="twitter:image" content="https://maggiedukek.com/og-image.png">
 <link rel="stylesheet" href="assets/styles.css?v=c12">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -76,6 +77,13 @@
       </div>
       <div><label>Links (optional)</label><input type="text" name="links" placeholder="Current site, examples you like…"></div>
       <div><label>Tell me about it</label><textarea name="message" required placeholder="What does your business need to do — not just how it should look?"></textarea></div>
+      <!-- Honeypot: hidden from real people, irresistible to bots. Leave it empty. -->
+      <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden">
+        <label>Website</label>
+        <input type="text" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <!-- Invisible bot check. Replace data-sitekey with your Cloudflare Turnstile SITE key. -->
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADsYBlmV8Ux1FuQm" data-theme="light" style="margin:4px 0 8px"></div>
       <button type="submit" class="submit">Send it over</button>
       <p id="formMsg" class="form-msg"></p>
     </form>
@@ -107,22 +115,59 @@
 <script src="assets/main.js?v=c2"></script>
 <script>
 (function(){
-  var SB_URL='https://dzjhpxkjqngqdgoefnih.supabase.co/rest/v1/inquiries';
-  var SB_KEY='sb_publishable_NIAo2qXxCsqv0eNh9u6TJg_hkSDnZTf';
+  // Submissions now go through a Supabase Edge Function that verifies the bot check
+  // server-side, then writes to the inquiries table. The form no longer touches the
+  // database directly, so spammers can't bypass the check.
+  var ENDPOINT='https://dzjhpxkjqngqdgoefnih.supabase.co/functions/v1/submit-inquiry';
   var f=document.getElementById('inquiryForm'), msg=document.getElementById('formMsg');
   if(!f) return;
+  var loadedAt=Date.now();
   f.addEventListener('submit', async function(e){
     e.preventDefault();
     var btn=f.querySelector('button.submit');
-    btn.disabled=true; btn.textContent='Sending…'; msg.textContent=''; msg.className='form-msg';
-    var data=Object.fromEntries(new FormData(f).entries());
-    Object.keys(data).forEach(function(k){ if(data[k]==='') delete data[k]; });
+    msg.textContent=''; msg.className='form-msg';
+
+    // 1) Honeypot — if the hidden field is filled, it's a bot. Fake success, send nothing.
+    var hp=f.elements['website'];
+    if(hp && hp.value){
+      f.reset(); msg.className='form-msg ok';
+      msg.textContent="Got it — thank you! I'll be in touch soon.";
+      return;
+    }
+
+    // 2) Cloudflare Turnstile token (auto-injected as a hidden field by the widget).
+    var fd=new FormData(f);
+    var token=fd.get('cf-turnstile-response') || '';
+    if(!token){
+      msg.className='form-msg err';
+      msg.textContent='Please wait a second for the verification to finish, then try again.';
+      return;
+    }
+    fd.delete('cf-turnstile-response');
+    fd.delete('website');
+
+    btn.disabled=true; btn.textContent='Sending…';
+    var fields=Object.fromEntries(fd.entries());
+    Object.keys(fields).forEach(function(k){ if(fields[k]==='') delete fields[k]; });
+
     try{
-      var r=await fetch(SB_URL,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(data)});
-      if(r.ok){ f.reset(); msg.className='form-msg ok'; msg.textContent="Got it — thank you! I'll be in touch soon."; }
-      else { msg.className='form-msg err'; msg.textContent='Something went wrong. Please email me directly at studio@maggiedukek.com.'; }
+      var r=await fetch(ENDPOINT,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ token:token, elapsed_ms:Date.now()-loadedAt, fields:fields })
+      });
+      if(r.ok){
+        f.reset();
+        if(window.turnstile){ try{ turnstile.reset(); }catch(_){} }
+        msg.className='form-msg ok';
+        msg.textContent="Got it — thank you! I'll be in touch soon.";
+      } else {
+        msg.className='form-msg err';
+        msg.textContent='Something went wrong. Please email me directly at studio@maggiedukek.com.';
+      }
     }catch(err){
-      msg.className='form-msg err'; msg.textContent='Something went wrong. Please email me directly at studio@maggiedukek.com.';
+      msg.className='form-msg err';
+      msg.textContent='Something went wrong. Please email me directly at studio@maggiedukek.com.';
     }
     btn.disabled=false; btn.textContent='Send it over';
   });

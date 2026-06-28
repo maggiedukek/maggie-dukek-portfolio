@@ -563,3 +563,9 @@ footer{background:linear-gradient(180deg,#43607a,var(--slate-deep));border-top:1
 /* smaller services (blue) banner */
 .make-show{padding-top:24px;padding-bottom:28px}
 .make-show .svc-stage{min-height:clamp(120px,15vh,180px)}
+
+/* services banner: smaller slide text so it fits the compact height */
+.make-show .svc-slide h3{font-size:clamp(21px,2.9vw,31px);line-height:1.08}
+.make-show .svc-slide p{font-size:clamp(13px,1.3vw,15px);line-height:1.55;margin-top:13px;max-width:560px}
+.make-show .svc-slide-link{margin-top:16px}
+.make-show .svc-stage{min-height:clamp(150px,19vh,200px)}
